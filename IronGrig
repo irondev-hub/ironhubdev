@@ -1,0 +1,33 @@
+local StarterGui = game:GetService("StarterGui")
+local placeId = game.PlaceId
+
+local gameMap = {    
+     BloxFruits = {
+        ids = {85211729168715, 79091703265657, 100117331123089, 2753915549, 4442272183, 7449423635},
+        raw = "https://raw.githubusercontent.com/irondev-hub/ironhubdev/refs/heads/main/MainPre.lua"
+    },
+    AOTRevolution = {
+        ids = {15824912319, 1337949730, 14012874501, 14916516914, 15824912319, 13379349730, 14012874501, 1768873934, 15220308770, 14638336319, 13904207646},
+        raw = "https://raw.githubusercontent.com/irondev-hub/ironhubdev/refs/heads/main/aotr.lua"
+    }
+}
+
+for _, data in pairs(gameMap) do
+    for _, id in ipairs(data.ids) do
+        if id == placeId then
+            StarterGui:SetCore("SendNotification", {
+                Title = "Iron Grig",
+                Text = "Loading script for this game...",
+                Duration = 4
+            })
+            loadstring(game:HttpGet(data.raw))()
+            return
+        end
+    end
+end
+
+StarterGui:SetCore("SendNotification", {
+    Title = "Iron Grig",
+    Text = "No script available for this game.",
+    Duration = 5
+})
